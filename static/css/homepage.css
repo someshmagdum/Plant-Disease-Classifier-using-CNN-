@@ -1,0 +1,87 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgb(30, 39, 32);
+  background-image: url("images/leaf_background_5.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: rgb(187, 214, 198);
+}
+
+.button-89 {
+  --b: 6px;  
+  --s: .45em; 
+  --color: rgb(246, 0, 116);
+  
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color:rgb(187, 214, 198);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 25px;
+  font-weight: 10px;
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  color: #fff;
+}
+
+.main-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 5;
+}
+
+.more-information {
+  font-family: 'Sora', sans-serif;
+  font-size: 30px;
+  padding: 40px 20px;
+  letter-spacing: 3px;
+}
+
+.title-container > p {
+  font-family: 'Sora', sans-serif;
+  font-size: 100px;
+  font-weight: 50px;
+  letter-spacing: 5px;
+}
+
+.form-outer-container {
+  flex-grow: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+

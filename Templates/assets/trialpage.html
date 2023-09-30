@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/trialpage.css') }}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Questrial&family=Sora:wght@699&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    {% if not img_path %}
+      <div class="form-container">
+
+        <a href="{{ url_for('home')}}"><button class="button-89 home-button">Home</button></a>
+        <form method="POST" enctype="multipart/form-data" action="/trial">
+          <input type="file" name="image" /><br>
+          <input class="button-89" type="submit" value="Classify" />
+        </form>
+
+        <div class="tips">
+          <div class="tips-text">
+            Please upload a clear image of only single leaf with no other object
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if img_path %}
+      <div class="output-container">
+        <div class="uploaded-image">
+          <img src="{{ img_path }}" class="imgBorder"/>
+        </div>
+        <div class="output-distribution">
+          <div class="most-probable-result">
+            <div class="most-probable-result-text">
+              Most likely disease is <br><span class='highlight'>{{ labels[0][1] }}</span><br>
+              with <span>{{ labels[0][0] }}%</span> 
+            </div>
+            <a href="{{ url_for('trial')}}"><button class="button-89" role="button">Try again</button></a>
+          </div>
+          <button id="more-results" class="button-89">More results</button>
+          <div class="hidden-result-container">
+            Other probable results
+            {% for label in labels[1:] %}
+            <div class="hidden-result">
+              <span>{{ label[1] }}</span>  with Score <span>{{ label[0]}}</span><br>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <script>
+      let moreResults = document.getElementById("more-results");
+      moreResults.addEventListener("click", function() {
+        document.getElementsByClassName("hidden-result-container")[0].style.visibility = 'visible';
+      })
+    </script>
+  </body>
+</html>
